@@ -1,0 +1,1 @@
+g++ main.cpp -o main -lwebkit2gtk-4.0  `pkg-config gtkmm-3.0 --cflags --libs` `pkg-config webkit2gtk-4.0 --libs --cflags`
