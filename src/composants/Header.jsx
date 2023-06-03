@@ -4,20 +4,23 @@ import Qcm from './Qcm';
 
 
 const Header = () => {
-  return (
-    <div className='mainnav'>
-        <button className='nav1 navs Btn'>
-            Qcm
-        </button>
-        <button className='nav2 navs Btn1 Btn'>
-            Create
-        </button>
-        <div className="Fimenu">
-            <FiMenu/>
+    return (
+        <div>
+            <div className='mainnav'>
+                <button className='nav1 navs Btn'>
+                    Qcm
+                </button>
+                <button className='nav2 navs Btn1 Btn'>
+                    Create
+                </button>
+                <div className="Fimenu">
+                    <FiMenu />
+                </div>
+
+            </div>
         </div>
-        <Qcm/>
-    </div>
-  )
+
+    )
 }
 
 export default Header
