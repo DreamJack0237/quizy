@@ -3,6 +3,7 @@ import React from 'react'
 const Qcm = () => {
     return (
         <div>
+            
             <div className='Question'>
                 <p className='Questionn_umber'>1.</p>
                 <h1 className='Question_text'>
@@ -59,9 +60,6 @@ const Qcm = () => {
                     </div>
                 </div>
             </div>
-
-
-
 
         </div>
     )
