@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS quiz { id INTEGER description TEXT };
+CREATE Table IF NOT EXISTS Questions { id INTEGER TEXT lib };
+CREATE TABLE IF NOT EXISTS ans { };
+CREATE TABLE if NOT EXISTS answer { id INTEGER TEXT lib };
