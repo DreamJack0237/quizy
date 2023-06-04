@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
 }
+
 .navs {
   display: flex;
   box-shadow: 0px 0px 5px 0px #4e4c4c;
@@ -12,8 +13,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  margin: 0px 0px 0px 10px;;
+  margin: 0px 0px 0px 10px;
+  ;
 }
+
 .Btn {
   height: 45px;
   border-radius: 10px;
@@ -26,10 +29,11 @@
   background-color: transparent;
   cursor: pointer;
   position: relative;
-  background: linear-gradient( to right, hsl(257, 40%, 49%), hsl(300, 69%, 71%));
+  background: linear-gradient(to right, hsl(257, 40%, 49%), hsl(300, 69%, 71%));
   transition-duration: .3s;
   letter-spacing: 1.4px;
 }
+
 .Btn1 {
   height: 45px;
   border-radius: 10px;
@@ -42,7 +46,7 @@
   background-color: transparent;
   cursor: pointer;
   position: relative;
-  background: linear-gradient( to left, hsl(257, 40%, 49%), hsl(300, 69%, 71%));
+  background: linear-gradient(to left, hsl(257, 40%, 49%), hsl(300, 69%, 71%));
   transition-duration: .3s;
   letter-spacing: 1.4px;
 }
@@ -60,7 +64,7 @@
   content: "";
   position: absolute;
   height: 30%;
-  background: linear-gradient( to right,#44ea76, #39fad7);
+  background: linear-gradient(to right, #44ea76, #39fad7);
   filter: blur(10px);
   bottom: -3px;
   z-index: -1;
@@ -82,3 +86,104 @@
   color: white;
   transform: scale(1.5);
 }
+
+
+/* Question Sectio */
+
+.Question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 0 0;
+
+
+}
+
+.Questionn_umber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #fff;
+  text-align: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  margin-left: 20px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: larger;
+  color: #000000;
+  background-color: #ffff;
+  border-radius: 20px;
+  height: auto;
+  width: 90vw;
+  padding: 20px;
+  margin: 0px 0px 0 20px;
+}
+
+.myCheck {
+  width: 100%;
+  border: none;
+  stroke: none;
+}
+
+/* options  section */
+
+.main_options{
+  margin-left: 3.5vw;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+}
+
+.options>div>p {
+  margin-left: 20px;
+  padding: 6px;
+  border-radius: 5px;
+  height: auto;
+  background-color: #ffff;
+}
+.options :nth-child(2){
+  width: 95%;
+}
+
+
+/* Custom Checkbox */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 5px;
+}
+
+
+.slider {
+  display: flex;justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 5px;
+  font-weight: bold;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+}
+
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+/*  End of custom Checkbox */
