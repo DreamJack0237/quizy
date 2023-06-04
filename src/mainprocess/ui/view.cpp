@@ -28,10 +28,10 @@ View::View(string title)
     g_object_set(settings, "enable-javascript", TRUE, NULL);
 
     string url;
-
-    if (debug != 'D')
+    url = string("file://") + current_path().string() + string("/ui/ressources/test.html");
+    if (debug == 'P')
         url = string("file://") + current_path().string() + string("/ui/ressources/index.html");
-    else
+    else if (debug == 'D')
         url = "http://127.0.0.1:3000";
 
     std::cout << url << std::endl;

@@ -1,12 +1,45 @@
 #include <webkit2/webkit-web-extension.h>
 #include <JavaScriptCore/JavaScript.h>
 #include <iostream>
+#include <fstream>
 #include <sqlite3.h>
 //
 //  Some basic c function to be exposed to the javascript environment
 //
 
 sqlite3 *db;
+
+static JSValueRef addquestion(JSContextRef context,
+                              JSObjectRef function,
+                              JSObjectRef thisObject,
+                              size_t argumentCount,
+                              const JSValueRef arguments[],
+                              JSValueRef *exception)
+{
+    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    return JSValueMakeString(context, string);
+}
+static JSValueRef addanswer(JSContextRef context,
+                            JSObjectRef function,
+                            JSObjectRef thisObject,
+                            size_t argumentCount,
+                            const JSValueRef arguments[],
+                            JSValueRef *exception)
+{
+    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    return JSValueMakeString(context, string);
+}
+static JSValueRef addquiz(JSContextRef context,
+                          JSObjectRef function,
+                          JSObjectRef thisObject,
+                          size_t argumentCount,
+                          const JSValueRef arguments[],
+                          JSValueRef *exception)
+{
+    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    return JSValueMakeString(context, string);
+}
+
 static JSValueRef some_method(JSContextRef context,
                               JSObjectRef function,
                               JSObjectRef thisObject,
@@ -40,7 +73,7 @@ window_object_cleared_callback(WebKitScriptWorld *world,
     JSObjectRef global = JSContextGetGlobalObject(js_ctx);
     JSObjectSetProperty(js_ctx,
                         global,
-                        JSStringCreateWithUTF8CString("myCFunction"),
+                        NULL,
                         boiler_plate,
                         kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
                         &exception);
@@ -71,9 +104,9 @@ webkit_web_extension_initialize(WebKitWebExtension *extension)
         database.seekg(0, std::ios::end);
         length = database.tellg();
         database.seekg(0, std::ios::beg);
-        buffer = new char[length];
-        database.read(buffer, length);
-        database.close();
+        // char *buffer = new char[length];
+        // database.read(buffer, length);
+        // rc = sqlite3_exec(db, buffer, NULL, 0, NULL);
     }
     g_signal_connect(webkit_script_world_get_default(),
                      "window-object-cleared",
