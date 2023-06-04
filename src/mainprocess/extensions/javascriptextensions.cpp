@@ -1,10 +1,12 @@
 #include <webkit2/webkit-web-extension.h>
 #include <JavaScriptCore/JavaScript.h>
 #include <iostream>
-
+#include <sqlite3.h>
 //
 //  Some basic c function to be exposed to the javascript environment
 //
+
+sqlite3 *db;
 static JSValueRef some_method(JSContextRef context,
                               JSObjectRef function,
                               JSObjectRef thisObject,
@@ -55,7 +57,24 @@ extern "C" G_MODULE_EXPORT void
 webkit_web_extension_initialize(WebKitWebExtension *extension)
 {
     std::cout << "EXTENSION INITIALIZED\n";
-
+    int rc = sqlite3_open("quizy.db", &db);
+    if (rc)
+    {
+        std::cout << "Can't open database\n";
+    }
+    else
+    {
+        std::cout << "Open database successfully\n";
+        std::ifstream database;
+        int length;
+        database.open("db.sql");
+        database.seekg(0, std::ios::end);
+        length = database.tellg();
+        database.seekg(0, std::ios::beg);
+        buffer = new char[length];
+        database.read(buffer, length);
+        database.close();
+    }
     g_signal_connect(webkit_script_world_get_default(),
                      "window-object-cleared",
                      G_CALLBACK(window_object_cleared_callback),
