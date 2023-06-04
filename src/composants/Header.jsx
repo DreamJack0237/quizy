@@ -1,23 +1,33 @@
 import React from 'react'
 import { FiMenu } from 'react-icons/fi';
-import Qcm from './Qcm';
+import { Outlet, Link } from "react-router-dom";
+import '../App.css';
 
 
 const Header = () => {
+  n(
+    <div>
+      <div className='mainnav'>
 
-  return (
-    <div className='mainnav'>
-      <button className='nav1 navs Btn'>
-        Qcm
-      </button>
-      <button className='nav2 navs Btn1 Btn'>
-        Create
-      </button>
-      <div className="Fimenu">
-        <FiMenu />
+        <Link className='navs Btn' to="/Qcm">
+          <button className='nav1'>
+            Qcm
+          </button>
+        </Link>
+
+        <Link className='navs Btn' to="/Create">
+          <button className='nav2 navs Btn1 '>
+            Create
+          </button>
+        </Link>
+
+        <div className="Fimenu">
+          <FiMenu />
+        </div>
+
       </div>
-      <Qcm />
     </div>
+
   )
 }
 
