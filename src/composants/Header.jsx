@@ -6,8 +6,12 @@ import '../App.css';
 
 const Header = () => {
     return (
-        <div>
+        <div className='main1'>
             <div className='mainnav'>
+                
+                <div className="Fimenu">
+                    <FiMenu />
+                </div>
 
                 <Link className='navs Btn' to="/Qcm">
                     <button className='nav1'>
@@ -21,10 +25,11 @@ const Header = () => {
                     </button>
                 </Link>
 
-                <div className="Fimenu">
-                    <FiMenu />
-                </div>
 
+            </div>
+
+            <div className='secondarynav'>
+                code space
             </div>
         </div>
 
