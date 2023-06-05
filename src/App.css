@@ -1,20 +1,31 @@
-.mainnav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+.main1{
+  display:flex;
+  height: 100vw;
+
 }
 
+.flex{
+  display: flex;
+}
+
+/*  header    */
+.mainnav {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  background:  hsl(257, 40%, 49%);
+  height: 100vw;
+}
+.secondarynav{
+  flex: 4;
+}
 .navs {
   display: flex;
   box-shadow: 0px 0px 5px 0px #4e4c4c;
-  width: 100%;
+  width: auto;
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
   border-radius: 10px;
-  margin: 0px 0px 0px 10px;
-  ;
+  margin: 10px
 }
 
 .Btn {
@@ -24,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   color: white;
   background-color: transparent;
   cursor: pointer;
@@ -41,7 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   color: white;
   background-color: transparent;
   cursor: pointer;
@@ -60,32 +71,15 @@
   transition-duration: .3s;
 }
 
-.Btn::before {
-  content: "";
-  position: absolute;
-  height: 30%;
-  background: linear-gradient(to right, #44ea76, #39fad7);
-  filter: blur(10px);
-  bottom: -3px;
-  z-index: -1;
-  transition-duration: .3s;
-}
-
-.Btn:hover::before {
-  bottom: -1px;
-  filter: blur(5px);
-  transition-duration: .3s;
-}
-
 .Fimenu {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 0 10px 0 10px;
   cursor: pointer;
   color: white;
   transform: scale(1.5);
 }
+
+/*  end headerrr  */
 
 
 /* Question Sectio */
@@ -122,7 +116,7 @@ h1 {
   background-color: #ffff;
   border-radius: 20px;
   height: auto;
-  width: 90vw;
+  width: 65vw;
   padding: 20px;
   margin: 0px 0px 0 20px;
 }
@@ -131,6 +125,22 @@ h1 {
   width: 100%;
   border: none;
   stroke: none;
+}
+/*  choix de Qcm section de choix de qcm */
+
+.choix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: larger;
+  color: #000000;
+  background-color: #ffff;
+  border-radius: 20px;
+  height: auto;
+  width: 72vw;
+  padding: 20px;
+  margin: 0px 0px 0 20px;
 }
 
 /* options  section */
@@ -154,6 +164,7 @@ h1 {
 .options :nth-child(2){
   width: 95%;
 }
+/*  end of section option */
 
 
 /* Custom Checkbox */

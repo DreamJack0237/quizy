@@ -6,25 +6,23 @@ import '../App.css';
 
 const Header = () => {
     return (
-        <div>
+        <div className='main1'>
+
             <div className='mainnav'>
 
-                <Link className='navs Btn' to="/Qcm">
-                    <button className='nav1'>
-                        Qcm
-                    </button>
+                <Link className='navs Btn nav1' to="/ChoixQcm">
+                        Choix de Qcm
                 </Link>
 
-                <Link className='navs Btn' to="/Create">
-                    <button className='nav2 navs Btn1 '>
+                <Link className='navs Btn nav2   Btn1 ' to="/Create">
                         Create
-                    </button>
                 </Link>
 
-                <div className="Fimenu">
-                    <FiMenu />
-                </div>
 
+            </div>
+
+            <div className='secondarynav'>
+                
             </div>
         </div>
 
