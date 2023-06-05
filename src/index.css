@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  text-decoration: none;
   background-image: url(./composants/images/bg-desktop.svg);
   background-color: hsl(257, 40%, 49%);
 

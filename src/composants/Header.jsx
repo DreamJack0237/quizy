@@ -5,24 +5,26 @@ import '../App.css';
 
 
 const Header = () => {
-  n(
-    <div>
-      <div className='mainnav'>
 
-        <Link className='navs Btn' to="/Qcm">
-          <button className='nav1'>
-            Qcm
-          </button>
-        </Link>
+    return (
+        <div className='main1'>
 
-        <Link className='navs Btn' to="/Create">
-          <button className='nav2 navs Btn1 '>
-            Create
-          </button>
-        </Link>
+            <div className='mainnav'>
 
-        <div className="Fimenu">
-          <FiMenu />
+                <Link className='navs Btn nav1' to="/ChoixQcm">
+                        Choix de Qcm
+                </Link>
+
+                <Link className='navs Btn nav2   Btn1 ' to="/Create">
+                        Create
+                </Link>
+
+
+            </div>
+
+            <div className='secondarynav'>
+                
+            </div>
         </div>
 
       </div>
