@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import React from 'react';
 import './index.css';
 import './App.css';
