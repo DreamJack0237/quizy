@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <HashRouter>
     <Routes>
-      <Route path="/." element={<Header />} />
+      <Route path="/" element={<Header />} />
       <Route path="/Qcm" element={<Qcm />} />
       <Route path="/Create" element={<Create />} />
       <Route path="/ChoixQcm" element={<ChoixQcm />} />
