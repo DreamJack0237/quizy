@@ -8,6 +8,12 @@
 .flex {
   display: flex;
 }
+.spbt{
+  justify-content: space-between;
+}
+.pad10{
+  padding: 20px;
+}
 
 /*  header    */
 
@@ -33,7 +39,7 @@
   width: auto;
   cursor: pointer;
   border-radius: 10px;
-  margin: 10px
+  margin: 15px
 }
 
 .Btn {
@@ -92,11 +98,15 @@
 
 /* Question Sectio */
 
+.col{
+  flex-direction: column;
+}
+
 .Question {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px 0 0 0;
+  margin:10px 0 0 0;
 
 
 }
@@ -126,7 +136,7 @@ h1 {
   height: auto;
   width: 65vw;
   padding: 10px;
-  margin: 0px 0px 0 20px;
+  margin: 0px 0px 0 10px;
 }
 
 .myCheck {
@@ -134,6 +144,26 @@ h1 {
   border: none;
   stroke: none;
 }
+
+.Asubmit{
+  display: flex;
+  justify-content: flex-end;
+}
+.submitbtn{
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+  background: #05a705;
+  transition-duration: .3s;
+  letter-spacing: 1.4px;
+}
+/*  Fin */
 
 /*  choix de Qcm section de choix de qcm */
 
@@ -148,7 +178,7 @@ h1 {
   border-radius: 10px;
   height: auto;
   width: 72vw;
-  padding: 10px;
+  padding: 5px;
   margin: 0px 0px 0 10px;
 }
 
@@ -169,11 +199,21 @@ h1 {
   border-radius: 5px;
   height: auto;
   background-color: #ffff;
+  padding-left: 10px;
 }
 
 .options :nth-child(2) {
   width: 95%;
 }
+
+.control{
+  width: 70vw;
+  position: absolute;
+  bottom: 0;
+}
+/* .control > button{
+  margin-left: 30%;
+} */
 
 /*  end of section option */
 
