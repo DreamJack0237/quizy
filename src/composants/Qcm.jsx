@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from './Header'
+import Time from './Time'
 
 const Qcm = () => {
     return (
         <div className='flex'>
             <Header />
-            <div>
+            <div className='justify'>
 
                 <div >
                     <div className='Question'>
@@ -124,6 +125,8 @@ const Qcm = () => {
                         </div>
                     </div>
                 </div>
+
+                <Time/>
 
             </div>
 
