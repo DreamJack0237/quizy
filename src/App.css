@@ -1,6 +1,7 @@
 .main1{
   display:flex;
-  height: 100vw;
+  height: 100vh;
+  position:fixed ;
 
 }
 
@@ -9,12 +10,17 @@
 }
 
 /*  header    */
+
+.justify{
+  margin-left: 20vw;
+}
+
 .mainnav {
   display: flex;
   flex-direction: column;
   width: 20vw;
   background:  hsl(257, 40%, 49%);
-  height: 100vw;
+  height: 100vh;
 }
 .secondarynav{
   flex: 4;
@@ -88,7 +94,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 0 0;
+  margin: 15px 0 0 0;
 
 
 }
@@ -114,10 +120,10 @@ h1 {
   font-size: larger;
   color: #000000;
   background-color: #ffff;
-  border-radius: 20px;
+  border-radius: 10px;
   height: auto;
   width: 65vw;
-  padding: 20px;
+  padding: 10px;
   margin: 0px 0px 0 20px;
 }
 
@@ -136,17 +142,17 @@ h1 {
   font-size: larger;
   color: #000000;
   background-color: #ffff;
-  border-radius: 20px;
+  border-radius: 10px;
   height: auto;
   width: 72vw;
-  padding: 20px;
-  margin: 0px 0px 0 20px;
+  padding: 10px;
+  margin: 0px 0px 0 10px;
 }
 
 /* options  section */
 
 .main_options{
-  margin-left: 3.5vw;
+  margin-left: 3vw;
 }
 
 .options {
@@ -156,7 +162,7 @@ h1 {
 
 .options>div>p {
   margin-left: 20px;
-  padding: 6px;
+  padding: 2px;
   border-radius: 5px;
   height: auto;
   background-color: #ffff;
@@ -174,7 +180,7 @@ h1 {
   display: inline-block;
   width: auto;
   height: auto;
-  padding: 5px;
+  padding: 2px;
 }
 
 
