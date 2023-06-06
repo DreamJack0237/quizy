@@ -5,7 +5,6 @@ import '../App.css';
 
 
 const Header = () => {
-
     return (
         <div className='main1'>
 
@@ -27,10 +26,7 @@ const Header = () => {
             </div>
         </div>
 
-      </div>
-    </div>
-
-  )
+    )
 }
 
 export default Header
