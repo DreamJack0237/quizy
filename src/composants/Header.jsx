@@ -5,7 +5,7 @@ import '../App.css';
 
 
 const Header = () => {
-  n(
+  return (
     <div>
       <div className='mainnav'>
 

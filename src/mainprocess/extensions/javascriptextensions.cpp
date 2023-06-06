@@ -8,6 +8,32 @@
 //
 
 sqlite3 *db;
+char *zErrMsg = 0;
+
+static JSValueRef addquiz(JSContextRef context,
+                          JSObjectRef function,
+                          JSObjectRef thisObject,
+                          size_t argumentCount,
+                          const JSValueRef arguments[],
+                          JSValueRef *exception)
+{
+    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    sql = "INSERT INTO QUIZ (NAME,AGE,ADDRESS,SALARY) "
+          "VALUES (1, 'Paul', 32, 'California', 20000.00 ); "
+
+        rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        fprintf(stdout, "Records created successfully\n");
+    }
+    return JSValueMakeString(context, string);
+}
 
 static JSValueRef addquestion(JSContextRef context,
                               JSObjectRef function,
@@ -17,8 +43,23 @@ static JSValueRef addquestion(JSContextRef context,
                               JSValueRef *exception)
 {
     JSStringRef string = JSStringCreateWithUTF8CString("butts");
-    return JSValueMakeString(context, string);
+    sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
+          "VALUES (1, 'Paul', 32, 'California', 20000.00 ); " return JSValueMakeString(context, string);
+
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        fprintf(stdout, "Records created successfully\n");
+    }
 }
+
 static JSValueRef addanswer(JSContextRef context,
                             JSObjectRef function,
                             JSObjectRef thisObject,
@@ -26,28 +67,46 @@ static JSValueRef addanswer(JSContextRef context,
                             const JSValueRef arguments[],
                             JSValueRef *exception)
 {
+
     JSStringRef string = JSStringCreateWithUTF8CString("butts");
-    return JSValueMakeString(context, string);
-}
-static JSValueRef addquiz(JSContextRef context,
-                          JSObjectRef function,
-                          JSObjectRef thisObject,
-                          size_t argumentCount,
-                          const JSValueRef arguments[],
-                          JSValueRef *exception)
-{
-    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    sql = "{INSERT INTO QUIZ (lib) "
+          "VALUES (" +
+          jsc_value_to_string(arguments[0]) + "); "
+          /* Execute SQL statement */
+          rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        fprintf(stdout, "Records created successfully\n");
+    }
     return JSValueMakeString(context, string);
 }
 
-static JSValueRef some_method(JSContextRef context,
-                              JSObjectRef function,
-                              JSObjectRef thisObject,
-                              size_t argumentCount,
-                              const JSValueRef arguments[],
-                              JSValueRef *exception)
+static JSValueRef getquizs(JSContextRef context,
+                           JSObjectRef function,
+                           JSObjectRef thisObject,
+                           size_t argumentCount,
+                           const JSValueRef arguments[],
+                           JSValueRef *exception)
 {
     JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        fprintf(stdout, "Records created successfully\n");
+    }
     return JSValueMakeString(context, string);
 }
 
@@ -73,10 +132,35 @@ window_object_cleared_callback(WebKitScriptWorld *world,
     JSObjectRef global = JSContextGetGlobalObject(js_ctx);
     JSObjectSetProperty(js_ctx,
                         global,
-                        NULL,
+                        JSStringCreateWithUTF8CString("myCFunction"),
                         boiler_plate,
                         kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
                         &exception);
+    JSObjectSetProperty(js_ctx,
+                        global,
+                        JSStringCreateWithUTF8CString("addquiz"),
+                        boiler_plate,
+                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
+                        &exception);
+    JSObjectSetProperty(js_ctx,
+                        global,
+                        JSStringCreateWithUTF8CString("addquestion"),
+                        boiler_plate,
+                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
+                        &exception);
+    JSObjectSetProperty(js_ctx,
+                        global,
+                        JSStringCreateWithUTF8CString("addanswer"),
+                        boiler_plate,
+                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
+                        &exception);
+    JSObjectSetProperty(js_ctx,
+                        global,
+                        JSStringCreateWithUTF8CString("getquiz"),
+                        boiler_plate,
+                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
+                        &exception);
+
     if (exception)
     {
         std::cout << "Argh! an exception!!!!\n";
@@ -104,9 +188,9 @@ webkit_web_extension_initialize(WebKitWebExtension *extension)
         database.seekg(0, std::ios::end);
         length = database.tellg();
         database.seekg(0, std::ios::beg);
-        // char *buffer = new char[length];
-        // database.read(buffer, length);
-        // rc = sqlite3_exec(db, buffer, NULL, 0, NULL);
+        char *buffer = new char[length];
+        database.read(buffer, length);
+        rc = sqlite3_exec(db, buffer, NULL, 0, NULL);
     }
     g_signal_connect(webkit_script_world_get_default(),
                      "window-object-cleared",
