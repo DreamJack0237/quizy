@@ -32,6 +32,7 @@ const ChoixQcm = () => {
 
         </div>
     )
+
 }
 
 export default ChoixQcm

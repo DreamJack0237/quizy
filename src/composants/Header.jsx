@@ -8,7 +8,6 @@ const Header = () => {
 
   return (
     <div className='main1'>
-
       <div className='mainnav'>
 
         <Link className='navs Btn nav1' to="/ChoixQcm">
@@ -27,6 +26,7 @@ const Header = () => {
       </div>
     </div>
   )
+
 }
 
 export default Header
