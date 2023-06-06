@@ -1,17 +1,17 @@
-.main1{
-  display:flex;
+.main1 {
+  display: flex;
   height: 100vh;
-  position:fixed ;
+  position: fixed;
 
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
 /*  header    */
 
-.justify{
+.justify {
   margin-left: 20vw;
 }
 
@@ -19,12 +19,14 @@
   display: flex;
   flex-direction: column;
   width: 20vw;
-  background:  hsl(257, 40%, 49%);
+  background: hsl(257, 40%, 49%);
   height: 100vh;
 }
-.secondarynav{
+
+.secondarynav {
   flex: 4;
 }
+
 .navs {
   display: flex;
   box-shadow: 0px 0px 5px 0px #4e4c4c;
@@ -36,7 +38,7 @@
 
 .Btn {
   height: 45px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   display: flex;
   align-items: center;
@@ -53,7 +55,7 @@
 
 .Btn1 {
   height: 45px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   display: flex;
   align-items: center;
@@ -132,6 +134,7 @@ h1 {
   border: none;
   stroke: none;
 }
+
 /*  choix de Qcm section de choix de qcm */
 
 .choix {
@@ -151,7 +154,7 @@ h1 {
 
 /* options  section */
 
-.main_options{
+.main_options {
   margin-left: 3vw;
 }
 
@@ -167,9 +170,11 @@ h1 {
   height: auto;
   background-color: #ffff;
 }
-.options :nth-child(2){
+
+.options :nth-child(2) {
   width: 95%;
 }
+
 /*  end of section option */
 
 
@@ -185,7 +190,8 @@ h1 {
 
 
 .slider {
-  display: flex;justify-content: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   position: absolute;
@@ -204,3 +210,81 @@ input:checked+.slider {
 }
 
 /*  End of custom Checkbox */
+
+
+/* create question section  "CREATE" */
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+}
+
+.center>h2 {
+  text-align: center;
+  background-color: #fff;
+  width: 30vw;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.MainCreate {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px 0px 0px 0px;
+}
+
+.CreateAnswer {
+  flex-direction: column;
+}
+
+.CreateAnswer>input {
+  margin: 5px;
+  width: 30vw;
+  outline: none;
+
+}
+
+.CreateQuestion {
+  flex-direction: column;
+
+}
+
+.CreateQuestion>input {
+  margin: 0px 0px 30px 10px;
+  width: 25vw;
+  outline: none;
+}
+
+.CreateAnswer>label {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.exite {
+  height: 40px;
+  width: 10vw;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+  background: #b90c0c;
+  transition-duration: .3s;
+  letter-spacing: 1.4px;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.margint{
+  padding-top: 20vh;
+}
+
+/*  End of "CREATE" */
