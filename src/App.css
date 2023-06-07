@@ -175,13 +175,43 @@ h1 {
   font-size: larger;
   color: #000000;
   background-color: #ffff;
-  border-radius: 10px;
   height: auto;
   width: 72vw;
   padding: 5px;
   margin: 0px 0px 0 10px;
 }
 
+.user1{display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.imguser {
+  color: white;
+  font-size: xx-large;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+}
+.user{
+  margin-top: 20vh;
+  flex-direction: column;
+  border: 1px solid #fcfcfc;
+  padding: 20px;
+}
+
+.user > * {
+  margin: 10px;
+  outline: none;
+}
 /* options  section */
 
 .main_options {

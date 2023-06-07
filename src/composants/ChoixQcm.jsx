@@ -6,13 +6,16 @@ import { Link } from "react-router-dom";
 const ChoixQcm = () => {
 
     const [quizs, setquizs] = useState([])
+
     // eslint-disable-next-line no-undef
+    
     useEffect(() => {
         setquizs(getallquiz())
     }, [])
     console.log()
     return (
         <div className='flex'>
+
             <Header />
             <div>
                 {
