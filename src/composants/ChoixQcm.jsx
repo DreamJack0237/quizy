@@ -8,18 +8,19 @@ const ChoixQcm = () => {
     const [quizs, setquizs] = useState([])
     // eslint-disable-next-line no-undef
     useEffect(() => {
-        setquizs(getallquiz())
+        console.log(sql("select * from quiz;"))
+        setquizs(sql("select * from quiz;"))
     }, [])
     console.log()
     return (
         <div className='flex'>
             <Header />
-            <div>
+            <div style={{ marginLeft: 300 }}>
                 {
                     quizs.map((quiz) => {
                         return (
                             <div className='Question '>
-                                <Link to="/Qcm" className='choix'>
+                                <Link to={`/Qcm/${quiz.id}`} className='choix'>
                                     {quiz.name}
                                 </Link>
                             </div>

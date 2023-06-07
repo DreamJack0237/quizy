@@ -11,21 +11,6 @@
 sqlite3 *db;
 char *zErrMsg = 0;
 
-class Quiz
-{
-    std::string id;
-    std::string name;
-
-public:
-    Quiz() {}
-    Quiz(std::string n, std::string i)
-    {
-        id = i;
-        name = n;
-    }
-    std::string getname() { return name; }
-    std::string getid() { return id; }
-};
 static JSValueRef addquiz(JSContextRef context,
                           JSObjectRef function,
                           JSObjectRef thisObject,
@@ -58,12 +43,43 @@ static JSValueRef addquestion(JSContextRef context,
                               const JSValueRef arguments[],
                               JSValueRef *exception)
 {
-    JSStringRef string = JSStringCreateWithUTF8CString("butts");
-    char *sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) "
-                "VALUES (1, 'Paul', 32, 'California', 20000.00 ); ";
 
-    /* Execute SQL statement */
-    int rc = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
+    JSStringRef string = JSValueToStringCopy(context, arguments[0], NULL);
+
+    std::cout << "add a new question" << std::endl;
+
+    char *qid = new char[10];
+    JSStringGetUTF8CString(string, qid, 10);
+    JSObjectRef arr = JSValueToObject(context, arguments[2], NULL);
+    JSPropertyNameArrayRef propertyNames = JSObjectCopyPropertyNames(context, arr);
+    size_t count = JSPropertyNameArrayGetCount(propertyNames);
+
+    char *qlib = new char[100];
+    JSStringGetUTF8CString(JSValueToStringCopy(context, arguments[1], NULL), qlib, 100);
+
+    std::string sqlq = "INSERT INTO question (quizid,lib) "
+                       "VALUES (" +
+                       std::string(qid) + ",\"" + std::string(qlib) + "\"); ";
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        JSStringRef propertyName = JSPropertyNameArrayGetNameAtIndex(propertyNames, i);
+        JSValueRef value = JSObjectGetPropertyAtIndex(context, arr, i, NULL);
+        std::cout << "in" << std::endl;
+        char *qlib = new char[100];
+        JSStringGetUTF8CString(JSValueToStringCopy(context, value, NULL), qlib, 100);
+        if (std::string(qlib) != "")
+        {
+            std::string sqlr = "INSERT INTO answer (questionid,lib) "
+                               "VALUES (" +
+                               std::string(qid) + ",\"" +
+                               std::string(qlib) + "\"); ";
+            // Do something with the value
+            sqlite3_exec(db, sqlr.c_str(), NULL, 0, &zErrMsg);
+        }
+    }
+
+    int rc = sqlite3_exec(db, sqlq.c_str(), NULL, 0, &zErrMsg);
 
     if (rc != SQLITE_OK)
     {
@@ -75,88 +91,58 @@ static JSValueRef addquestion(JSContextRef context,
         fprintf(stdout, "Records created successfully\n");
     }
 
-    return JSValueMakeString(context, string);
+    return JSValueMakeBoolean(context, true);
 }
 
-static JSValueRef addanswer(JSContextRef context,
-                            JSObjectRef function,
-                            JSObjectRef thisObject,
-                            size_t argumentCount,
-                            const JSValueRef arguments[],
-                            JSValueRef *exception)
+struct dataarray
 {
+    JSContextRef ctx;
+    JSObjectRef array;
+    std::string h;
+};
 
-    JSStringRef string = JSStringCreateWithUTF8CString("butts");
-    char *sql = "{INSERT INTO QUIZ (lib) "
-                "VALUES (' 3 '); ";
-    /* Execute SQL statement */
-    int rc = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "SQL error: %s\n", zErrMsg);
-        sqlite3_free(zErrMsg);
-    }
-    else
-    {
-        fprintf(stdout, "Records created successfully\n");
-    }
-    return JSValueMakeString(context, string);
-}
-
-static JSValueRef some_method(JSContextRef context,
-                              JSObjectRef function,
-                              JSObjectRef thisObject,
-                              size_t argumentCount,
-                              const JSValueRef arguments[],
-                              JSValueRef *exception)
+static int sqlcallback(void *data, int argc, char **argv, char **azColName)
 {
-    int rc;
-    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    dataarray *d = (dataarray *)data;
+    std::cout << d->h.c_str() << "ok" << std::endl;
+    printf("%s", d->h.c_str());
+    JSObjectRef dict = JSObjectMake(d->ctx, NULL, NULL);
 
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "SQL error: %s\n", zErrMsg);
-        sqlite3_free(zErrMsg);
-    }
-    else
-    {
-        fprintf(stdout, "Records created successfully\n");
-    }
-    return JSValueMakeString(context, string);
-}
-
-int x;
-std::vector<Quiz> quizs;
-static int callback(void *data, int argc, char **argv, char **azColName)
-{
-    int i;
-    quizs.push_back(Quiz(std::string(argv[0]), std::string(argv[1])));
-
-    for (i = 0; i < argc; i++)
+    for (int i = 0; i < argc; i++)
     {
         printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+        JSStringRef key = JSStringCreateWithUTF8CString(azColName[i]);
+        JSStringRef value = JSStringCreateWithUTF8CString(argv[i] ? argv[i] : "NULL");
+        JSObjectSetProperty(d->ctx, dict, key, JSValueMakeString(d->ctx, value), kJSPropertyAttributeNone, NULL);
     }
-    x = i;
+
+    JSPropertyNameArrayRef propertyNames = JSObjectCopyPropertyNames(d->ctx, d->array);
+    size_t i = JSPropertyNameArrayGetCount(propertyNames);
+
+    JSObjectSetPropertyAtIndex(d->ctx, d->array, i, dict, NULL);
+
     printf("\n");
     return 0;
 }
 
-static JSValueRef getquizs(JSContextRef context,
-                           JSObjectRef function,
-                           JSObjectRef thisObject,
-                           size_t argumentCount,
-                           const JSValueRef arguments[],
-                           JSValueRef *exception)
+static JSValueRef sql(JSContextRef context,
+                      JSObjectRef function,
+                      JSObjectRef thisObject,
+                      size_t argumentCount,
+                      const JSValueRef arguments[],
+                      JSValueRef *exception)
 {
 
-    quizs.clear();
-    JSStringRef string = JSStringCreateWithUTF8CString("butts");
+    dataarray *d = new dataarray;
+    char *sql = new char[200];
+    JSStringGetUTF8CString(JSValueToStringCopy(context, arguments[0], NULL), sql, 100);
+    d->ctx = context;
+    d->array = JSObjectMakeArray(context, 0, NULL, NULL);
+    d->h = "yo";
     /* Execute SQL statement */
-    char *sql = "SELECT * from quiz";
 
     /* Execute SQL statement */
-    int rc = sqlite3_exec(db, sql, callback, NULL, NULL);
+    int rc = sqlite3_exec(db, sql, sqlcallback, d, NULL);
     if (rc != SQLITE_OK)
     {
         fprintf(stderr, "SQL error: %s\n", zErrMsg);
@@ -164,24 +150,11 @@ static JSValueRef getquizs(JSContextRef context,
     }
     else
     {
-        fprintf(stdout, "Records created successfully\n");
-    }
-    JSObjectRef array = JSObjectMakeArray(context, 0, NULL, NULL);
-    for (int i = 0; i < quizs.size(); i++)
-    {
-        JSObjectRef dict = JSObjectMake(context, NULL, NULL);
-        JSStringRef key = JSStringCreateWithUTF8CString("id");
-        JSStringRef value = JSStringCreateWithUTF8CString(quizs[i].getid().c_str());
-        JSStringRef namekey = JSStringCreateWithUTF8CString("name");
-        JSStringRef name = JSStringCreateWithUTF8CString(quizs[i].getname().c_str());
-        JSObjectSetProperty(context, dict, key, JSValueMakeString(context, value), kJSPropertyAttributeNone, NULL);
-        JSObjectSetProperty(context, dict, namekey, JSValueMakeString(context, name), kJSPropertyAttributeNone, NULL);
-        JSObjectSetPropertyAtIndex(context, array, i, (JSValueRef)dict, NULL);
+        fprintf(stdout, "you got all quiz\n");
     }
 
-    return array;
+    return d->array;
 }
-
 //
 //  Boilerplate code / signal NULL for attaching methods when a
 //  new javascript context is created.
@@ -196,43 +169,26 @@ window_object_cleared_callback(WebKitScriptWorld *world,
     JSGlobalContextRef js_ctx;
     js_ctx = webkit_frame_get_javascript_context_for_script_world(frame, world);
 
-    JSObjectRef boiler_plate = JSObjectMakeFunctionWithCallback(js_ctx,
-                                                                NULL,
-                                                                some_method);
+    JSObjectRef addquestion_plate = JSObjectMakeFunctionWithCallback(js_ctx,
+                                                                     NULL,
+                                                                     addquestion);
+    JSObjectRef sql_plate = JSObjectMakeFunctionWithCallback(js_ctx,
+                                                             NULL,
+                                                             sql);
 
-    JSObjectRef getquizs_plate = JSObjectMakeFunctionWithCallback(js_ctx,
-                                                                  NULL,
-                                                                  getquizs);
     JSValueRef exception = 0;
     JSObjectRef global = JSContextGetGlobalObject(js_ctx);
     JSObjectSetProperty(js_ctx,
                         global,
-                        JSStringCreateWithUTF8CString("myCFunction"),
-                        boiler_plate,
+                        JSStringCreateWithUTF8CString("sql"),
+                        sql_plate,
                         kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
                         &exception);
-    JSObjectSetProperty(js_ctx,
-                        global,
-                        JSStringCreateWithUTF8CString("addquiz"),
-                        boiler_plate,
-                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
-                        &exception);
+
     JSObjectSetProperty(js_ctx,
                         global,
                         JSStringCreateWithUTF8CString("addquestion"),
-                        boiler_plate,
-                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
-                        &exception);
-    JSObjectSetProperty(js_ctx,
-                        global,
-                        JSStringCreateWithUTF8CString("addanswer"),
-                        boiler_plate,
-                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
-                        &exception);
-    JSObjectSetProperty(js_ctx,
-                        global,
-                        JSStringCreateWithUTF8CString("getallquiz"),
-                        getquizs_plate,
+                        addquestion_plate,
                         kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
                         &exception);
 
