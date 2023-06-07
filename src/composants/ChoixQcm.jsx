@@ -21,7 +21,7 @@ const ChoixQcm = () => {
                         return (
                             <div className='Question '>
                                 <Link to={`/Qcm/${quiz.id}`} className='choix'>
-                                    {quiz.name}
+                                    {quiz.n}
                                 </Link>
                             </div>
                         )

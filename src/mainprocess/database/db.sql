@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS quiz(
-    name varchar(100) UNIQUE,
+    n varchar(100) UNIQUE,
     id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 CREATE Table IF NOT EXISTS question (
