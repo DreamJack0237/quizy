@@ -19,7 +19,6 @@ const Create = () => {
     questions.push(rep3.value)
     questions.push(rep4.value)
 
-
     sql(`insert into quiz (n) values ("${mat.value}") ;`)
     let m = sql(`select * from quiz where n="${mat.value}";`)
     console.log(m)
@@ -57,7 +56,6 @@ const Create = () => {
 
         <div className='CreateAnswer flex'>
           <label htmlFor="Answer">Inscrivez vos reponses ici</label>
-          <input type="text" name=" Answer" ></input>
           <input type="text" id='rep1'></input>
           <input type="text" id='rep2'></input>
           <input type="text" id='rep3'></input>

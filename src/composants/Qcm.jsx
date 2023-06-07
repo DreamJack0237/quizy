@@ -49,12 +49,12 @@ const Qcm = () => {
 
                                     <div className='main_options'>
                                         {
-                                            q.reps.map((rep) => {
+                                            q.reps.map((rep, i) => {
                                                 return (
                                                     <div className='options'>
                                                         <label className="switch">
                                                             <input type="checkbox" />
-                                                            <span className="slider"><p>D.</p></span>
+                                                            <span className="slider"><p>{String.fromCharCode(65 + i)}</p></span>
                                                         </label>
                                                         <div>
                                                             <p>
@@ -76,24 +76,13 @@ const Qcm = () => {
 
                     }
 
-                    <div className='Asubmit flex'>
-                        <button className='submitbtn'>
-                            Submit
-                        </button>
-                    </div>
                 </div>
 
-
-
-                <div className='flex spbt pad10 control'>
-
+                <div className='qbot'>
                     <Time />
-
-                    <button className="NextPage">
-                        Next page &#65125;
-                    </button>
-
                 </div>
+
+
 
 
             </div>

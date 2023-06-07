@@ -1,34 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
- 
-class Time extends React.Component {
- 
- 
-  state = {
-    curTime: ""
-  };
- 
-  componentDidMount() {
-    this.getTime();
-  }
- 
-  getTime = () => {
-    var today = new Date(),
- 
-    curTime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
- 
- 
-    this.setState({ curTime });
-  };
- 
-  render(){
-    return (
-      <div className="App">
-        <p> {this.state.curTime}</p>
-      </div>
-    );
-  }
+
+function Time() {
+
+  const [cur, setcur] = useState(0)
+
+  useEffect(() => {
+
+  }, [])
+
+
+  window.setTimeout(() => {
+    setcur(cur + 1)
+  }, 1000)
+
+  return (
+    <div className="time">
+      <p> {cur} seconde</p>
+    </div>
+  );
+
 }
- 
+
+
+
 export default Time;
