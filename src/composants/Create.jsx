@@ -44,9 +44,9 @@ const Create = () => {
 
         <div className='CreateQuestion flex'>
 
-          <input type="text" id='mat' label='entrer votre matier' />
+          <input type="text" id='mat' label='entrer votre matier' placeholder='Matiere' />
 
-          <input type="text" name='Question' id='question' />
+          <input type="text" name='Question' id='question' placeholder='Question' />
           <button className='Btn' onClick={onaddquestion}>Add Question</button>
 
 
@@ -56,10 +56,10 @@ const Create = () => {
 
         <div className='CreateAnswer flex'>
           <label htmlFor="Answer">Inscrivez vos reponses ici</label>
-          <input type="text" id='rep1'></input>
-          <input type="text" id='rep2'></input>
-          <input type="text" id='rep3'></input>
-          <input type="text" id='rep4'></input>
+          <input type="text" id='rep1' placeholder='Choix1'></input>
+          <input type="text" id='rep2' placeholder='Choix2'></input>
+          <input type="text" id='rep3' placeholder='Choix3'></input>
+          <input type="text" id='rep4' placeholder='Choix4'></input>
 
         </div>
 
