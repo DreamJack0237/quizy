@@ -25,6 +25,11 @@ const Create = () => {
           <input type="text" name='Question' />
           <button className='Btn'>Add Question</button>
 
+
+          <input type="text" label='entrer votre matier' />
+          
+          <button className='Btn' >Ajouter Matiere</button>
+
         </div>
 
         <div className='CreateAnswer flex'>
