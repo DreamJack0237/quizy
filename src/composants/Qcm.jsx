@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 const Qcm = () => {
 
     const { id } = useParams()
+    console.log(id)
     const [qandr, setqandr] = useState([])
     const getquestions = () => {
         let r = []
