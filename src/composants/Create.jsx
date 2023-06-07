@@ -36,7 +36,7 @@ const Create = () => {
   return (
     <div className=''>
 
-      <div className='center'>
+      <div className='center1 center'>
         <h2>Cree votre Qcm</h2>
       </div>
 
