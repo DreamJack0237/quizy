@@ -16,7 +16,7 @@ root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<Header />} />
-      <Route path="/Qcm" element={<Qcm />} />
+      <Route path="/Qcm/:id" element={<Qcm />} />
       <Route path="/Create" element={<Create />} />
       <Route path="/ChoixQcm" element={<ChoixQcm />} />
       <Route path="/User" element={<User/>} />
