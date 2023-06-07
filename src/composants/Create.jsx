@@ -18,7 +18,15 @@ const Create = () => {
     questions.push(rep3.value)
     questions.push(rep4.value)
 
-    console.log(addquestion(1, question.value, questions));
+    sql(`insert into question (quizid,lib) values (1,"${question.value}") ;`)
+    let qu = sql(`SELECT COUNT(*) as count FROM question;`)
+    console.log(qu)
+    for (let q of questions) {
+      if (q !== '') {
+        console.log(q)
+        sql(`insert into answer (questionid,lib) values (${parseInt(parseInt(qu[0].count))},"${q}"); `)
+      }
+    }
   }
   return (
     <div className=''>

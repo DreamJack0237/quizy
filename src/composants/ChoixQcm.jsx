@@ -15,12 +15,12 @@ const ChoixQcm = () => {
     return (
         <div className='flex'>
             <Header />
-            <div>
+            <div style={{ marginLeft: 300 }}>
                 {
                     quizs.map((quiz) => {
                         return (
                             <div className='Question '>
-                                <Link to="/Qcm" className='choix'>
+                                <Link to={`/Qcm/${quiz.id}`} className='choix'>
                                     {quiz.name}
                                 </Link>
                             </div>

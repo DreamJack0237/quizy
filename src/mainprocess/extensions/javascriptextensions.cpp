@@ -119,7 +119,7 @@ static int sqlcallback(void *data, int argc, char **argv, char **azColName)
     JSPropertyNameArrayRef propertyNames = JSObjectCopyPropertyNames(d->ctx, d->array);
     size_t i = JSPropertyNameArrayGetCount(propertyNames);
 
-    JSObjectSetPropertyAtIndex(d->ctx, d->array, 1, dict, NULL);
+    JSObjectSetPropertyAtIndex(d->ctx, d->array, i, dict, NULL);
 
     printf("\n");
     return 0;
@@ -169,10 +169,6 @@ window_object_cleared_callback(WebKitScriptWorld *world,
     JSGlobalContextRef js_ctx;
     js_ctx = webkit_frame_get_javascript_context_for_script_world(frame, world);
 
-    JSObjectRef boiler_plate = JSObjectMakeFunctionWithCallback(js_ctx,
-                                                                NULL,
-                                                                some_method);
-
     JSObjectRef addquestion_plate = JSObjectMakeFunctionWithCallback(js_ctx,
                                                                      NULL,
                                                                      addquestion);
@@ -188,12 +184,7 @@ window_object_cleared_callback(WebKitScriptWorld *world,
                         sql_plate,
                         kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
                         &exception);
-    JSObjectSetProperty(js_ctx,
-                        global,
-                        JSStringCreateWithUTF8CString("addquiz"),
-                        boiler_plate,
-                        kJSPropertyAttributeDontDelete | kJSPropertyAttributeReadOnly,
-                        &exception);
+
     JSObjectSetProperty(js_ctx,
                         global,
                         JSStringCreateWithUTF8CString("addquestion"),
