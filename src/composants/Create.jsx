@@ -13,7 +13,7 @@ const Create = () => {
   return (
     <div className=''>
 
-      <div className='center'>
+      <div className='center1 center'>
         <h2>Cree votre Qcm</h2>
       </div>
 
@@ -27,7 +27,7 @@ const Create = () => {
 
 
           <input type="text" label='entrer votre matier' />
-          
+
           <button className='Btn' >Ajouter Matiere</button>
 
         </div>

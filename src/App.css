@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   width: 20vw;
-  background: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 21%);
   height: 100vh;
 }
 
@@ -45,7 +45,7 @@
 .Btn {
   height: 45px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid rgb(243, 238, 238);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +54,7 @@
   background-color: transparent;
   cursor: pointer;
   position: relative;
-  background: linear-gradient(to right, hsl(257, 40%, 49%), hsl(300, 69%, 71%));
+  background: rgba(64, 84, 139, 0.829);
   transition-duration: .3s;
   letter-spacing: 1.4px;
 }
@@ -62,7 +62,7 @@
 .Btn1 {
   height: 45px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid rgb(243, 238, 238);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@
   background-color: transparent;
   cursor: pointer;
   position: relative;
-  background: linear-gradient(to left, hsl(257, 40%, 49%), hsl(300, 69%, 71%));
+  background: rgba(64, 84, 139, 0.829);
   transition-duration: .3s;
   letter-spacing: 1.4px;
 }
@@ -257,17 +257,24 @@ input:checked+.slider {
 .center {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 30px;
+}
 
+.center1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
 }
 
 .center>h2 {
   text-align: center;
-  background-color: #fff;
+  color: white !important;
+  text-transform: capitalize;
+  font-size: xx-large;
+  border-bottom: 1px solid white;
+  background-color: #ffffff00;
   width: 30vw;
   padding: 10px;
-  border-radius: 5px;
 }
 
 .MainCreate {
@@ -285,7 +292,21 @@ input:checked+.slider {
   margin: 5px;
   width: 30vw;
   outline: none;
+}
 
+label{
+  text-transform: capitalize;
+  color: white;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+input{
+  padding: 10px;
+  background-color: rgba(181, 183, 189, 0);
+  color: white;
+  font-size: large;
+  font-weight: bolder;
 }
 
 .CreateQuestion {
@@ -324,7 +345,7 @@ input:checked+.slider {
 }
 
 .margint{
-  padding-top: 20vh;
+  padding-top: 10vh;
 }
 
 /*  End of "CREATE" */
