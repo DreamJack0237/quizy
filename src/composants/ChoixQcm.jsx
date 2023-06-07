@@ -8,7 +8,8 @@ const ChoixQcm = () => {
     const [quizs, setquizs] = useState([])
     // eslint-disable-next-line no-undef
     useEffect(() => {
-        setquizs(getallquiz())
+        console.log(sql("select * from quiz;"))
+        setquizs(sql("select * from quiz;"))
     }, [])
     console.log()
     return (
