@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiMenu } from 'react-icons/fi';
+import { FiUsers } from 'react-icons/fi';
 import { Outlet, Link } from "react-router-dom";
 import '../App.css';
 
@@ -18,7 +18,9 @@ const Header = () => {
           Create
         </Link>
 
-
+        <Link className='user1' to="/User">
+            <FiUsers className='imguser'/>
+        </Link>
       </div>
 
       <div className='secondarynav'>
