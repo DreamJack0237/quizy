@@ -10,3 +10,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.time {
+  color: aliceblue;
+}
+
+.qbot {
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
