@@ -21,11 +21,11 @@ View::View(string title)
     std::cout << "MODULE LOAD PATH: " << module_path << "\n";
     webkit_web_context_set_web_extensions_directory(web_ctx, module_path);
 
-    WebKitSettings *settings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(webview));
+    settings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(webview));
 
     webkit_settings_set_enable_webgl(settings, true);
     webkit_settings_set_enable_developer_extras(settings, true);
-    g_object_set(settings, "enable-javascript", TRUE, NULL);
+    g_object_set(settings, "enable-javascript", true, NULL);
 
     string url;
     url = string("file://") + current_path().string() + string("/ui/ressources/test.html");

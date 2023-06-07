@@ -10,6 +10,7 @@ class View : public Gtk::Window
 {
 private:
     WebKitWebView *webview;
+    WebKitSettings *settings;
 
 public:
     View(string title);
