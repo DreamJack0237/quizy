@@ -228,8 +228,8 @@ form{
 }
 
 .options>div>p {
-  margin-left: 20px;
-  padding: 2px;
+  margin-left: 40px;
+  padding: 10px;
   border-radius: 5px;
   height: auto;
   background-color: #ffff;
@@ -271,6 +271,7 @@ form{
   position: absolute;
   border-radius: 5px;
   font-weight: bold;
+  padding: 10px ;
   top: 0;
   left: 0;
   right: 0;
